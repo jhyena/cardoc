@@ -1,18 +1,58 @@
+"""
+this module create a car store that gets items from a car factory
+
+
+"""
+
 class Car:
+
+    """
+     a single  car class
+     all car types
+
+
+    """
     def __init__(self):
+        """
+        this is a car constructor.
+        :param self: the instance of this object
+        :type self: car
+
+        """
         self.type = ""
         self.model = ""
         self.wheels = 4
         self.doors = 3
         self.seets = 5
 
+
     def print_model(self):
+        """
+        print the moudule of the current car using self.model and self.type.
+        :param self: the instance of this object
+        :type self:Car
+        :return:nothing
+        :rtype:none
+        """
         print("This car is a {model}: {type}, Wow!".format(model=self.model,type= self.type))
 
     def print_space(self):
+        """
+        print the moudule of the current car using self.model and self.type.
+        :param self: the instance of this object
+        :type self:Car
+        :return:nothing
+        :rtype:none
+        """
         print("The car has {0} doors and {1} seets".format(self.doors, self.seets))
 
     def __str__(self):
+        """
+        prints :
+        This car is a {s.model}: {s.type}, Wow!
+        The car has {s.doors} doors and {s.seets} seets
+        :return: a custom string showing off thr make model and the capacity of the current car
+        """
         return """
 This car is a {s.model}: {s.type}, Wow!
 The car has {s.doors} doors and {s.seets} seets""".format(s=self)
@@ -20,14 +60,52 @@ The car has {s.doors} doors and {s.seets} seets""".format(s=self)
 
 class BMW(Car):
     def __init__(self, **arg):
-          Car.__init__(self)
-          self.model = "BMW"
-          self.type = "{} Series".format(arg.get("type"))
-          self.doors = arg.get("doors")
-          self.fuel = arg.get("fuel")
 
+        """
+        creates a BMW class.
+        innherits Car
+
+        :param arg: contains the information about BMW cars.
+        :type arg: dict
+
+        :param arg: the type of the car . shoud be part of arg . key is "type"
+        :type type: str
+
+        :param doors: the doors that the car has . should be a part of arg. key is "Doors"
+        :type doors :int
+
+        :param fuel: the fuel that the car has . should be a part of arg. key is "fuel"
+        :type fuel: Fuel
+
+        """
+
+        Car.__init__(self)
+        self.model = "BMW"
+        self.type = "{} Series".format(arg.get("type"))
+        self.doors = arg.get("doors")
+        self.fuel = arg.get("fuel")
 class Mercedes(Car):
     def __init__(self, **arg):
+        """
+        creates a Mercedes class.
+        innherits Car
+
+        :param arg: contains the information about BMW cars.
+        :type arg: dict
+
+        :param arg: the type of the car . shoud be part of arg . key is "type"
+        :type type: str
+
+        :param doors: the doors that the car has . should be a part of arg. key is "Doors"
+        :type doors :int
+
+        :param fuel: the fuel that the car has . should be a part of arg. key is "fuel"
+        :type fuel: fuel
+
+        """
+
+
+
         Car.__init__(self)
         self.model = "Mercedes"
         self.type = "{} Class".format(arg.get("type"))
@@ -36,11 +114,32 @@ class Mercedes(Car):
 
 
 class Fuel:
+    """
+    The fuel of a Car.
+
+    """
     def __init__(self, **arg):
+        """
+        The Fuel of a Car.
+        :param arg: Information about the Fuel
+        :type arg: dict
+
+        :param liters: Liters of fuel needed
+        :type liters: int
+
+        :param type: Type of fuel needed.
+        :typetype: str
+        """
         self.liters = arg.get("liters")
         self.type = arg.get("type")
 
     def __str__(self):
+        """
+        Prints:
+        uses {s.liters}L of {s.type}¢.
+
+        :return: shows what fuel it is
+        """
         return """It uses {s.liters}L of {s.type}¢.""".format(s=self)
 
 
@@ -54,6 +153,9 @@ class CarFactory:
 
 
 class CarStore:
+    """
+    The car store
+    """
     inventory = []
 
     def __init__(self, **kwargs):
@@ -61,6 +163,16 @@ class CarStore:
         self.inventory.append(self._car_factory.get_car())
 
     def show_car(self, car=None):
+        """
+        Shows Car type and fuel used by the car.
+        If the car is not defined it gets it from the factory.
+        :param car: displays care. Default: None
+        :type car: Car
+
+        :return: Nothing
+        :rtype: None
+
+        """
         if not car:
             car = self._car_factory.get_car()
 
@@ -70,6 +182,7 @@ class CarStore:
     def show_inventory(self):
         for i in self.inventory:
             self.show_car(i)
+
 
     def __str__(self):
         return "".join([str(i) for i in self.inventory])
@@ -85,6 +198,25 @@ print("\n","-"*100)
 
 class Lada(Car):
     def __init__(self, **arg):
+        """
+        creates a Lada class.
+        innherits Car
+
+        :param arg: contains the information about BMW cars.
+        :type arg: dict
+
+        :param arg: the type of the car . shoud be part of arg . key is "type"
+        :type type: str
+
+        :param doors: the doors that the car has . should be a part of arg. key is "Doors"
+        :type doors :int
+
+        :param fuel: the fuel that the car has . should be a part of arg. key is "fuel"
+        :type fuel: fuel
+
+        """
+
+
         Car.__init__(self)
         self.model = "Lada"
         self.type = "{}".format(arg.get("type"))
@@ -94,3 +226,7 @@ class Lada(Car):
 store = CarStore(type=Lada, car_type="VAZ-2107",doors=2,liters=1.2,fuel_type="Octane Gasoline")
 
 store.show_inventory()
+
+
+
+

@@ -39,3 +39,14 @@ Auto Class
    :show-inheritance:
    :inherited-members:
 
+Car Module
+=================================
+
+.. automodule:: Cars
+   :members:
+   :private-members:
+   :special-members: __init__, __str__
+
+
+
+
